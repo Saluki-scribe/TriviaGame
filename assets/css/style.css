@@ -1,0 +1,17 @@
+body {
+    background-color: firebrick;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+#main-div {
+    background-color: lightcoral;
+    height: 700px;
+    width: 900px;
+    margin: 50px auto;
+}
+header {
+    text-align: center;
+}
