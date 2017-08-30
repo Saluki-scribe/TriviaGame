@@ -52,17 +52,37 @@ $("#start-button").on("click", function() {
 //QUIZ State
 
 //Make the answers clickable
-    //Can be their own divs
-//When clicked, IF right answer:
-    //transition to "right" screen
-//IF wrong answer:
-    //transition to "wrong" screen
-//Make the questions transition by timer AND by clicking
+    //Each answer is a paragraph
+    //**Make hover hightlight effect for each answer**
 
-//Record the user's right vs wrong answers each time (reference coin flip)
+//When clicked, IF right answer:
+    //Record right answer
+    //transition to "right" screen
+    //And show positive gif
+    //After 3 seconds, switch to next question
+
+//IF wrong answer:
+    //Record wrong answer
+    //transition to "wrong" screen
+    //And show negative gif
+    //After 3 seconds, switch to next question
+
+//IF out of time:
+    //Record unanswered
+    //transition to "out of time" screen
+    //And show negative gif
+    //After 3 seconds, switch to next question
+
 
 //END State
 
+    //Timer can still be visible, but is no longer ticking down
+    //Write "All done, here's how you did!"
+    //Correct Answers:
+    //Incorrect Answers:
+    //Unanswered:
+    //Start Over? (button)
+        //When clicked, does NOT reload page
 
 
 //$("#content-div p").html(Q2.q + "<br>" + Q2.a1 + "<br>" + Q2.a2 + "<br>" + Q2.a3 + "<br>" + Q2.a4);
@@ -99,7 +119,7 @@ $("#start-button").on("click", function() {
 
 
 /*
-The Fantasy Villain's Trope Primer
+The Evil Overlord Assessment Test
 
 1) 
 2)
