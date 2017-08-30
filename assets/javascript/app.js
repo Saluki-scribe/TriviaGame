@@ -21,11 +21,10 @@ var q2 = new Question("");*/
 
 var Q1 = {
 q: "How are you?",
-A: " Super",
-B: " Good",
-C: " All right",
-D: " Crummy",
-rightAnswer: true,
+ra: " Super",
+a1: " Good",
+a2: " All right",
+a3: " Crummy",
 }
 
 var Q2 = {
@@ -37,15 +36,37 @@ D: " Why are you doing this to me?",
 rightAnswer: true,
 }
 
+//Global Variables
+
+var rightAnswer = 0;
+var wrongAnswer = 0;
+var unanswered = 0;
+
 //START State
-$("#time-div").hide();
+
+//Title page: Hides timer and all content
+$("#time-div, #content-div").hide();
+
 $("#start-button").on("click", function() {
-    $("#time-div").show();
-    $.each(Q1, function(key, value){
-        $("#content-div").append("<br>" + key + ") " + value);
-    });
-    //$("#content-div p").html(Q1.q + "<br>" + Q1.a1 + "<br>" + Q1.a2 + "<br>" + Q1.a3 + "<br>" + Q1.a4);
     $("#start-button").hide();    
+    $("#time-div, #content-div").show();
+
+    //$.each(Q1, function(key, value){
+    //    $("#content-div").append("<br>" + key + ") " + value);
+    //});
+    $("#answer-div").html("<p>" + Q1.q + "<p id = 'ra'>" + Q1.ra + "<p>" + Q1.a1 + "<p>" + Q1.a2 + "<p>" + Q1.a3);
+
+    $("#ra").on("click", function() {
+        rightAnswer += 1;
+        console.log("It works!");
+        console.log(rightAnswer);
+    })
+
+    $("#answer-div p").not("#ra").on("click", function(){
+        wrongAnswer += 1;
+        console.log("WRONG!");
+        console.log(wrongAnswer);
+    })
 
 });
 
