@@ -21,28 +21,55 @@ var q2 = new Question("");*/
 
 var Q1 = {
 q: "How are you?",
-a1: "A) Super",
-a2: "B) Good",
-a3: "C) All right",
-a4: "D) Crummy",
+A: " Super",
+B: " Good",
+C: " All right",
+D: " Crummy",
 rightAnswer: true,
 }
 
 var Q2 = {
-    q: "Are you sure?",
-    a1: "A) Yes",
-    a2: "B) I think so...",
-    a3: "C) No. I told you before.",
-    a4: "D) Why are you doing this to me?",
-    rightAnswer: true,
+q: "Are you sure?",
+A: " Yes",
+B: " I think so...",
+C: " No. I told you before.",
+D: " Why are you doing this to me?",
+rightAnswer: true,
 }
 
-$("#content-div p").html(Q1.q + "<br>" + Q1.a1 + "<br>" + Q1.a2 + "<br>" + Q1.a3 + "<br>" + Q1.a4);
+//START State
+$("#time-div").hide();
+$("#start-button").on("click", function() {
+    $("#time-div").show();
+    $.each(Q1, function(key, value){
+        $("#content-div").append("<br>" + key + ") " + value);
+    });
+    //$("#content-div p").html(Q1.q + "<br>" + Q1.a1 + "<br>" + Q1.a2 + "<br>" + Q1.a3 + "<br>" + Q1.a4);
+    $("#start-button").hide();    
+
+});
+
+//QUIZ State
+
+//Make the answers clickable
+    //Can be their own divs
+//When clicked, IF right answer:
+    //transition to "right" screen
+//IF wrong answer:
+    //transition to "wrong" screen
+//Make the questions transition by timer AND by clicking
+
+//Record the user's right vs wrong answers each time (reference coin flip)
+
+//END State
 
 
-if () {
+
+//$("#content-div p").html(Q2.q + "<br>" + Q2.a1 + "<br>" + Q2.a2 + "<br>" + Q2.a3 + "<br>" + Q2.a4);
+
+//if () {
     
-}
+//}
 
 
     //Create a trivia game object
@@ -67,7 +94,7 @@ if () {
 
 
 
-})
+}) //
 
 
 
