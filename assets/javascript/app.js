@@ -29,7 +29,7 @@ a3: " Crummy",
 
 var Q2 = {
 q: "Are you sure?",
-A: " Yes",
+ra: " Yes",
 B: " I think so...",
 C: " No. I told you before.",
 D: " Why are you doing this to me?",
@@ -54,23 +54,50 @@ $("#start-button").on("click", function() {
     //$.each(Q1, function(key, value){
     //    $("#content-div").append("<br>" + key + ") " + value);
     //});
-    $("#answer-div").html("<p>" + Q1.q + "<p id = 'ra'>" + Q1.ra + "<p>" + Q1.a1 + "<p>" + Q1.a2 + "<p>" + Q1.a3);
-
-    $("#ra").on("click", function() {
-        rightAnswer += 1;
-        console.log("It works!");
-        console.log(rightAnswer);
-    })
-
-    $("#answer-div p").not("#ra").on("click", function(){
-        wrongAnswer += 1;
-        console.log("WRONG!");
-        console.log(wrongAnswer);
-    })
-
-});
 
 //QUIZ State
+
+
+//Question 1
+    
+    //Display Questions
+    $("#answer-div").html("<p>" + Q1.q + "<p id = 'ra'>" + Q1.ra + "<p>" + Q1.a1 + "<p>" + Q1.a2 + "<p>" + Q1.a3);
+    
+    //If Right, Display Right Page
+    $("#ra").on("click", function() {
+        rightAnswer += 1;
+        $("#answer-div").hide();
+        $("#question-and-response-div").html("<p> Excellent! </p> <img src='assets/images/wa-lord-business.gif'>");
+        //In three seconds, switch to next set of questions
+    })
+    
+    //If Wrong, Display Wrong Page
+    $("#answer-div p").not("#ra").on("click", function(){
+        wrongAnswer += 1;
+        $("#answer-div").hide();
+        $("#question-and-response-div").html("<p> Wrong!</p> <img src='assets/images/wa-lord-business.gif'>");
+        //In three seconds, switch to next set of questions
+    })
+
+//Question 2
+
+
+
+//Question 3
+
+
+//Question 4
+
+
+//Question 5
+
+
+
+}); //End Start Button onClick
+
+
+
+}); //End Document Ready Function
 
 //Make the answers clickable
     //Each answer is a paragraph
@@ -135,7 +162,7 @@ $("#start-button").on("click", function() {
 
 
 
-}) //
+
 
 
 
