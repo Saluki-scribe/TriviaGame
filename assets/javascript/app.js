@@ -355,10 +355,10 @@ if ($("#results").length > 0) {
     $("#results").append("<button id = 'restart'><p>Try Again?</p></button>")
     
     $("#restart").on("click", function(){
-        var rightAnswer = 0;
-        var wrongAnswer = 0;
-        var unanswered = 0;
-        $("#content-div").html("<div id= 'answer-div'></div><div id= 'answer-div'></div>");
+        rightAnswer = 0;
+        wrongAnswer = 0;
+        unanswered = 0;
+        $("#content-div").html("<div id= 'answer-div'></div><div id= 'response-div'></div>");
         $("#start-button").trigger("click"); 
     })
 
@@ -373,10 +373,10 @@ if ($("#results").length > 0) {
         $("#results").append("<button id = 'restart'><p>Try Again?</p></button>")
         
         $("#restart").on("click", function(){
-            var rightAnswer = 0;
-            var wrongAnswer = 0;
-            var unanswered = 0;
-            $("#content-div").html("<div id= 'answer-div'></div><div id= 'answer-div'></div>");
+            rightAnswer = 0;
+            wrongAnswer = 0;
+            unanswered = 0;
+            $("#content-div").html("<div id= 'answer-div'></div><div id= 'response-div'></div>");
             $("#start-button").trigger("click");                
         })
     }//End Low Score "If" Statement
