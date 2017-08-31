@@ -4,7 +4,7 @@ $(document).ready(function triviaGame (){
 
 var Q1 = {
     q: "Which of these fashion choices are a no-no for dark lords?",
-    ra: "Something bright and cheery",
+    ra: "Anything bright and cheery",
     a1: "Dark colors",
     a2: "Lots of spikes and pointy angles",
     a3: "Face-concealing headgear",
@@ -20,7 +20,7 @@ var Q2 = {
 
 var Q3 = {
     q: "Where should you practice your monologue?",
-    ra: "Alone, in front of your rubber duck",
+    ra: "In front of your rubber duck",
     a1: "Practice? Monologues should be extemporaneous!",
     a2: "Monologues are for dweebs",
     a3: "At your local Toastmasters club",
@@ -352,10 +352,14 @@ if ($("#results").length > 0) {
     
     $("#results").append("<img src='assets/images/good-score.gif'>");
 
-    $("#results").append("<button id = 'restart'>Try Again?</button>")
+    $("#results").append("<button id = 'restart'><p>Try Again?</p></button>")
     
     $("#restart").on("click", function(){
-            triviaGame();
+        var rightAnswer = 0;
+        var wrongAnswer = 0;
+        var unanswered = 0;
+        $("#content-div").html("<div id= 'answer-div'></div><div id= 'answer-div'></div>");
+        $("#start-button").trigger("click"); 
     })
 
     } //End High Score "If" Statement
@@ -366,10 +370,14 @@ if ($("#results").length > 0) {
         
         $("#results").append("<img src='assets/images/bad-score.gif'>");
 
-        $("#results").append("<button id = 'restart'>Try Again?</button>")
+        $("#results").append("<button id = 'restart'><p>Try Again?</p></button>")
         
         $("#restart").on("click", function(){
-                triviaGame();
+            var rightAnswer = 0;
+            var wrongAnswer = 0;
+            var unanswered = 0;
+            $("#content-div").html("<div id= 'answer-div'></div><div id= 'answer-div'></div>");
+            $("#start-button").trigger("click");                
         })
     }//End Low Score "If" Statement
     
