@@ -50,6 +50,20 @@ $("#time-div, #content-div").hide();
 $("#start-button").on("click", function() {
     $("#start-button").hide();    
     $("#time-div, #content-div").show();
+    
+
+    var time = 30;
+    var count = setInterval(countDown,1000);
+    
+    function countDown(){
+       time--;
+       if(time == 0){
+          clearInterval(count);
+       } 
+       console.log(time);
+       $("#time-div").html("<span>Time Remaining: " + time);
+    }
+
 
     //$.each(Q1, function(key, value){
     //    $("#content-div").append("<br>" + key + ") " + value);
@@ -63,6 +77,20 @@ $("#start-button").on("click", function() {
     //Display Questions
     $("#answer-div").html("<p>" + Q1.q + "<p id = 'ra'>" + Q1.ra + "<p>" + Q1.a1 + "<p>" + Q1.a2 + "<p>" + Q1.a3);
     
+    //If Out of Time, Display Time Out Page
+    if (time == 0) {
+        unanswered += 1;
+        $("#answer-div").remove();
+        $("#response-div").html("<p> Times Up!</p> <img src='assets/images/wa-lord-business.gif'>");
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-2'></div> <div id = 'response-div-2'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    }
+
+    
+
     //If Right, Display Right Page
     $("#ra").on("click", function() {
         rightAnswer += 1;
@@ -127,14 +155,15 @@ $("#answer-div-2 p").not("#ra-2").on("click", function(){
 } //End Answer Div 2 "If" Statement
 
 
-//Question 3
+//QUESTION 3
 if($("#answer-div-3").length > 0) {
 $("#answer-div-3").html("<p>New Stuff</p>");
 }
-//Question 4
+
+//QUESTION 4
 
 
-//Question 5
+//QUESTION 5
 
 
 
