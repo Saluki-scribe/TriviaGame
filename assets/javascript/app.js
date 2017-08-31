@@ -20,19 +20,43 @@ var q1 = new Question("What's the smartest way to monologue to the hero?",
 var q2 = new Question("");*/
 
 var Q1 = {
-q: "How are you?",
-ra: " Super",
-a1: " Good",
-a2: " All right",
-a3: " Crummy",
+q: "Which of these fashion choices are a no-no for dark lords?",
+ra: "Something bright and cheery",
+a1: "Dark colors",
+a2: "Lots of spikes and pointy angles",
+a3: "Face-concealing headgear",
 }
 
 var Q2 = {
-q: "Are you sure?",
-ra: " Why are you doing this to me?",
-a1: " Yes",
-a2: " I think so...",
-a3: " No. I told you before.",
+q: "You're finally facing down the hero. Game plan?",
+ra: "All of these are great plans",
+a1: "When the hero thinks they've won, reveal a monstrous final form",
+a2: "Reveal something shocking to distract them",
+a3: "Wear spikier armor and weild a dark legendary weapon",
+}
+
+var Q3 = {
+    q: "Where should you practice your monologue?",
+    ra: "Alone, in front of your rubber duck",
+    a1: "Practice? Monologues should be extemporaneous!",
+    a2: "Monologues are for dweebs",
+    a3: "At your local Toastmasters club",
+}
+
+var Q4 = {
+    q: "Which one of these makes for a decent lair?",
+    ra: "Somewhere devoid of nature and sunlight",
+    a1: "The suburbs",
+    a2: "A small, humble village",
+    a3: "Wherever you can save on rent",
+}
+
+var Q5 = {
+    q: "Which isn't a good reason to take over/destroy the world?",
+    ra: "Nothing good on TV",
+    a1: "You're evil",
+    a2: "Your personal philosophy demands that you end all suffering by ending all life",
+    a3: "You're power-hungry/want to be worshipped",
 }
 
 //Global Variables
@@ -125,24 +149,7 @@ $("#start-button").on("click", function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//QUESTION 1
+//QUESTION 2
 if ($("#answer-div-2").length > 0){
     //Display Questions
     $("#answer-div-2").html("<p>" + Q2.q + "<p>" + Q2.a1 + "<p>" + Q2.a2 + "<p id = 'ra-2'>" + Q2.ra + "<p>" + Q2.a3);
@@ -193,55 +200,59 @@ if ($("#answer-div-2").length > 0){
 
 
 
-/*
 
-//QUESTION 2
-if($("#answer-div-2").length > 0) {
-//In five seconds, switch to next set of questions
-$("#answer-div-2").html("<p>" + Q2.q + "<p>" + Q2.a1 + "<p>" + Q2.a2 + "<p id = 'ra-2'>" + Q2.ra + "<p>" + Q2.a3);
-
-//If Out of Time, Display Time Out Page
-setTimeout(function() {
-    unanswered += 1;
-    $("#answer-div-2").remove();
-    $("#response-div-2").html("<p> Times Up!</p> <img src='assets/images/wa-maleficent.gif'>");
-    intervalSet = setInterval(function(){
-        clearInterval(intervalSet);
-        $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
-        $("#start-button").trigger("click");
-    }, 5000);
-}, 10000);
-
-//If Right, Display Right Page
-$("#ra-2").on("click", function() {
-    rightAnswer += 1;
-    $("#answer-div-2").remove();
-    $("#response-div-2").html("<p> Excellent! </p> <img src='assets/images/ra-maleficent-2.gif'>");
+//QUESTION 3
+if ($("#answer-div-3").length > 0){
+    //Display Questions
+    $("#answer-div-3").html("<p>" + Q3.q + "<p>" + Q3.a1 + "<p>" + Q3.a2 + "<p id = 'ra-3'>" + Q3.ra + "<p>" + Q3.a3);
     
-    intervalSet = setInterval(function(){
-        clearInterval(intervalSet);
-        clearInterval(count);
-        $("#content-div").html("<div id = 'answer-div-3'></div> <div id= 'response-div-3'></div>");
-        $("#start-button").trigger("click");
-    }, 5000);
-})
+    //If Out of Time, Display Time Out Page
+    timeOutSet = setTimeout(function() {
+        unanswered += 1;
+        $("#answer-div-2").remove();
+        $("#response-div-2").html("<p> Times Up!</p> <img src='assets/images/wa-maleficent.gif'>");
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    }, 15000);
 
-//If Wrong, Display Wrong Page
-$("#answer-div-2 p").not("#ra-2").on("click", function(){
-    wrongAnswer += 1;
-    $("#answer-div-2").remove();
-    $("#response-div-2").html("<p> Wrong!</p> <img src='assets/images/wa-maleficent.gif'>");
+    //If Right, Display Right Page
+    $("#ra-2").on("click", function() {
+        rightAnswer += 1;
+        $("#answer-div-2").remove();
+        $("#response-div-2").html("<p> Excellent! </p> <img src='assets/images/ra-maleficent-2.gif'>");
+        clearInterval(count);
+        clearTimeout(timeOutSet);
+        
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    })
     
-    intervalSet = setInterval(function(){
-        clearInterval(intervalSet);
+    //If Wrong, Display Wrong Page
+    $("#answer-div-2 p").not("#ra-2").on("click", function(){
+        wrongAnswer += 1;
+        $("#answer-div-2").remove();
+        $("#response-div-2").html("<p> Wrong!</p> <img src='assets/images/wa-maleficent-2.gif'>");
         clearInterval(count);
-        $("#content-div").html("<div id = 'answer-div-3'></div> <div id= 'response-div-3'></div>");
-        $("#start-button").trigger("click");
-    }, 5000);
+        clearTimeout(timeOutSet);
+        
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    });
 
-});
-} //End Answer Div 2 "If" Statement
-*/
+    } //End answer-div-2 "If" statement
+
+
+
+    
 
 //QUESTION 3
 if($("#answer-div-3").length > 0) {
