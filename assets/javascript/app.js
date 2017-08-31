@@ -52,7 +52,7 @@ $("#start-button").on("click", function() {
     $("#time-div, #content-div").show();
     
 
-    var time = 30;
+    var time = 10;
     var count = setInterval(countDown,1000);
     
     function countDown(){
@@ -78,7 +78,7 @@ $("#start-button").on("click", function() {
     $("#answer-div").html("<p>" + Q1.q + "<p id = 'ra'>" + Q1.ra + "<p>" + Q1.a1 + "<p>" + Q1.a2 + "<p>" + Q1.a3);
     
     //If Out of Time, Display Time Out Page
-    if (time == 0) {
+    setTimeout(function() {
         unanswered += 1;
         $("#answer-div").remove();
         $("#response-div").html("<p> Times Up!</p> <img src='assets/images/wa-lord-business.gif'>");
@@ -87,7 +87,7 @@ $("#start-button").on("click", function() {
             $("#content-div").html("<div id = 'answer-div-2'></div> <div id = 'response-div-2'></div>");
             $("#start-button").trigger("click");
         }, 5000);
-    }
+    }, 10000);
 
     
 
