@@ -41,6 +41,7 @@ var rightAnswer = 0;
 var wrongAnswer = 0;
 var unanswered = 0;
 var intervalSet;
+var timeOutSet;
 
 //START State
 
@@ -52,7 +53,7 @@ $("#start-button").on("click", function() {
     $("#time-div, #content-div").show();
     
 
-    var time = 10;
+    var time = 15;
     var count = setInterval(countDown,1000);
     
     function countDown(){
@@ -78,7 +79,7 @@ $("#start-button").on("click", function() {
     $("#answer-div").html("<p>" + Q1.q + "<p id = 'ra'>" + Q1.ra + "<p>" + Q1.a1 + "<p>" + Q1.a2 + "<p>" + Q1.a3);
     
     //If Out of Time, Display Time Out Page
-    setTimeout(function() {
+    timeOutSet = setTimeout(function() {
         unanswered += 1;
         $("#answer-div").remove();
         $("#response-div").html("<p> Times Up!</p> <img src='assets/images/wa-lord-business.gif'>");
@@ -87,21 +88,20 @@ $("#start-button").on("click", function() {
             $("#content-div").html("<div id = 'answer-div-2'></div> <div id = 'response-div-2'></div>");
             $("#start-button").trigger("click");
         }, 5000);
-    }, 10000);
-
-    
+    }, 15000);
 
     //If Right, Display Right Page
     $("#ra").on("click", function() {
         rightAnswer += 1;
         $("#answer-div").remove();
         $("#response-div").html("<p> Excellent! </p> <img src='assets/images/ra-lord-business.gif'>");
+        clearInterval(count);
+        clearTimeout(timeOutSet);
         
         intervalSet = setInterval(function(){
             clearInterval(intervalSet);
             $("#content-div").html("<div id = 'answer-div-2'></div> <div id = 'response-div-2'></div>");
             $("#start-button").trigger("click");
-
         }, 5000);
     })
     
@@ -110,6 +110,9 @@ $("#start-button").on("click", function() {
         wrongAnswer += 1;
         $("#answer-div").remove();
         $("#response-div").html("<p> Wrong!</p> <img src='assets/images/wa-lord-business.gif'>");
+        clearInterval(count);
+        clearTimeout(timeOutSet);
+        
         intervalSet = setInterval(function(){
             clearInterval(intervalSet);
             $("#content-div").html("<div id = 'answer-div-2'></div> <div id = 'response-div-2'></div>");
@@ -120,11 +123,94 @@ $("#start-button").on("click", function() {
     } //End answer-div "If" statement
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//QUESTION 1
+if ($("#answer-div-2").length > 0){
+    //Display Questions
+    $("#answer-div-2").html("<p>" + Q2.q + "<p>" + Q2.a1 + "<p>" + Q2.a2 + "<p id = 'ra-2'>" + Q2.ra + "<p>" + Q2.a3);
+    
+    //If Out of Time, Display Time Out Page
+    timeOutSet = setTimeout(function() {
+        unanswered += 1;
+        $("#answer-div-2").remove();
+        $("#response-div-2").html("<p> Times Up!</p> <img src='assets/images/wa-maleficent.gif'>");
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    }, 15000);
+
+    //If Right, Display Right Page
+    $("#ra-2").on("click", function() {
+        rightAnswer += 1;
+        $("#answer-div-2").remove();
+        $("#response-div-2").html("<p> Excellent! </p> <img src='assets/images/ra-maleficent-2.gif'>");
+        clearInterval(count);
+        clearTimeout(timeOutSet);
+        
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    })
+    
+    //If Wrong, Display Wrong Page
+    $("#answer-div-2 p").not("#ra-2").on("click", function(){
+        wrongAnswer += 1;
+        $("#answer-div-2").remove();
+        $("#response-div-2").html("<p> Wrong!</p> <img src='assets/images/wa-maleficent-2.gif'>");
+        clearInterval(count);
+        clearTimeout(timeOutSet);
+        
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    });
+
+    } //End answer-div-2 "If" statement
+
+
+
+/*
+
 //QUESTION 2
 if($("#answer-div-2").length > 0) {
 //In five seconds, switch to next set of questions
-
 $("#answer-div-2").html("<p>" + Q2.q + "<p>" + Q2.a1 + "<p>" + Q2.a2 + "<p id = 'ra-2'>" + Q2.ra + "<p>" + Q2.a3);
+
+//If Out of Time, Display Time Out Page
+setTimeout(function() {
+    unanswered += 1;
+    $("#answer-div-2").remove();
+    $("#response-div-2").html("<p> Times Up!</p> <img src='assets/images/wa-maleficent.gif'>");
+    intervalSet = setInterval(function(){
+        clearInterval(intervalSet);
+        $("#content-div").html("<div id = 'answer-div-3'></div> <div id = 'response-div-3'></div>");
+        $("#start-button").trigger("click");
+    }, 5000);
+}, 10000);
 
 //If Right, Display Right Page
 $("#ra-2").on("click", function() {
@@ -134,6 +220,7 @@ $("#ra-2").on("click", function() {
     
     intervalSet = setInterval(function(){
         clearInterval(intervalSet);
+        clearInterval(count);
         $("#content-div").html("<div id = 'answer-div-3'></div> <div id= 'response-div-3'></div>");
         $("#start-button").trigger("click");
     }, 5000);
@@ -147,13 +234,14 @@ $("#answer-div-2 p").not("#ra-2").on("click", function(){
     
     intervalSet = setInterval(function(){
         clearInterval(intervalSet);
+        clearInterval(count);
         $("#content-div").html("<div id = 'answer-div-3'></div> <div id= 'response-div-3'></div>");
         $("#start-button").trigger("click");
     }, 5000);
 
 });
 } //End Answer Div 2 "If" Statement
-
+*/
 
 //QUESTION 3
 if($("#answer-div-3").length > 0) {
