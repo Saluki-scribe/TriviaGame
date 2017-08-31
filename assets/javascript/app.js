@@ -29,11 +29,10 @@ a3: " Crummy",
 
 var Q2 = {
 q: "Are you sure?",
-ra: " Yes",
-B: " I think so...",
-C: " No. I told you before.",
-D: " Why are you doing this to me?",
-rightAnswer: true,
+ra: " Why are you doing this to me?",
+a1: " Yes",
+a2: " I think so...",
+a3: " No. I told you before.",
 }
 
 //Global Variables
@@ -41,6 +40,7 @@ rightAnswer: true,
 var rightAnswer = 0;
 var wrongAnswer = 0;
 var unanswered = 0;
+var intervalSet;
 
 //START State
 
@@ -58,34 +58,79 @@ $("#start-button").on("click", function() {
 //QUIZ State
 
 
-//Question 1
-    
+//QUESTION 1
+    if ($("#answer-div").length > 0){
     //Display Questions
     $("#answer-div").html("<p>" + Q1.q + "<p id = 'ra'>" + Q1.ra + "<p>" + Q1.a1 + "<p>" + Q1.a2 + "<p>" + Q1.a3);
     
     //If Right, Display Right Page
     $("#ra").on("click", function() {
         rightAnswer += 1;
-        $("#answer-div").hide();
-        $("#question-and-response-div").html("<p> Excellent! </p> <img src='assets/images/wa-lord-business.gif'>");
-        //In three seconds, switch to next set of questions
+        $("#answer-div").remove();
+        $("#response-div").html("<p> Excellent! </p> <img src='assets/images/ra-lord-business.gif'>");
+        
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-2'></div> <div id = 'response-div-2'></div>");
+            $("#start-button").trigger("click");
+
+        }, 5000);
     })
     
     //If Wrong, Display Wrong Page
     $("#answer-div p").not("#ra").on("click", function(){
         wrongAnswer += 1;
-        $("#answer-div").hide();
-        $("#question-and-response-div").html("<p> Wrong!</p> <img src='assets/images/wa-lord-business.gif'>");
-        //In three seconds, switch to next set of questions
-    })
+        $("#answer-div").remove();
+        $("#response-div").html("<p> Wrong!</p> <img src='assets/images/wa-lord-business.gif'>");
+        intervalSet = setInterval(function(){
+            clearInterval(intervalSet);
+            $("#content-div").html("<div id = 'answer-div-2'></div> <div id = 'response-div-2'></div>");
+            $("#start-button").trigger("click");
+        }, 5000);
+    });
 
-//Question 2
+    } //End answer-div "If" statement
 
+
+//QUESTION 2
+if($("#answer-div-2").length > 0) {
+//In five seconds, switch to next set of questions
+
+$("#answer-div-2").html("<p>" + Q2.q + "<p>" + Q2.a1 + "<p>" + Q2.a2 + "<p id = 'ra-2'>" + Q2.ra + "<p>" + Q2.a3);
+
+//If Right, Display Right Page
+$("#ra-2").on("click", function() {
+    rightAnswer += 1;
+    $("#answer-div-2").remove();
+    $("#response-div-2").html("<p> Excellent! </p> <img src='assets/images/ra-maleficent-2.gif'>");
+    
+    intervalSet = setInterval(function(){
+        clearInterval(intervalSet);
+        $("#content-div").html("<div id = 'answer-div-3'></div> <div id= 'response-div-3'></div>");
+        $("#start-button").trigger("click");
+    }, 5000);
+})
+
+//If Wrong, Display Wrong Page
+$("#answer-div-2 p").not("#ra-2").on("click", function(){
+    wrongAnswer += 1;
+    $("#answer-div-2").remove();
+    $("#response-div-2").html("<p> Wrong!</p> <img src='assets/images/wa-maleficent.gif'>");
+    
+    intervalSet = setInterval(function(){
+        clearInterval(intervalSet);
+        $("#content-div").html("<div id = 'answer-div-3'></div> <div id= 'response-div-3'></div>");
+        $("#start-button").trigger("click");
+    }, 5000);
+
+});
+} //End Answer Div 2 "If" Statement
 
 
 //Question 3
-
-
+if($("#answer-div-3").length > 0) {
+$("#answer-div-3").html("<p>New Stuff</p>");
+}
 //Question 4
 
 
